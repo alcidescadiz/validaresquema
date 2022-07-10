@@ -34,11 +34,8 @@ function Constructor(nombre, edad, email, activo) {
       activo: {
         value: activo,
         type: "boolean"
-      },
-    },
-    {
-      timeStamp: false,
-    },
+      }
+    }
   ];
 }
 ```
@@ -79,7 +76,7 @@ let User = ValidarEsquema(Constructor("john doe", 20, "mail@mail.com", true));
 
 ```
 
-* Si las validaciones son incorrectas, la funcion ValidarEsquema devolverá el objeto cons un array de los erorres en el formato y tipo de los campos.
+* Si las validaciones son incorrectas, la funcion ValidarEsquema devolverá el objeto con un array de los erorres en el formato y tipo de los campos.
 
 ```javascript
 
@@ -94,15 +91,59 @@ let User = ValidarEsquema(Constructor("john doe", 20, "mail@mail.com", true));
 
 ```
 
-### Se puede pasar el objeto { timeStamp: true  } para añadir los campos create_at y update_at
+### Se puede pasar un segundo parametro a la función ValidarEsquema  para añadir los campos create_at y update_at
 
-### Campos obligatorios: Cada propiedad debe tener un "value" el cual el constructor le asignaá un valor, y cada campo debe tener un "type" donde se le debe indicar el tipo de dato, los tipos de datos soportados son: "string", "number", "email", "password", "boolean"
+* El string 'create', añade dos compos:  create_at y update_at
 
-**NOTA:** *El tipo "password" para que sea valido debe incluir al menos un caracter especial {@$!%*?&}, Una mayuscula, Un numero, entre 8-15 caracteres en total.*
+```javascript
+
+let User = ValidarEsquema(Constructor("john doe", 20, "mail@mail.com", true), 'create');
+
+{
+  Result: 'Validate',
+  Response: {
+    nombre: 'john doe',
+    edad: 20,
+    email: 'mail@mail.com',
+    activo: true,
+    create_at: 2022-07-10T17:02:14.318Z,
+    update_at: 2022-07-10T17:02:14.318Z
+  }
+}
+
+```
+
+* El string 'update', añade el  campo: update_at
+
+```javascript
+
+let User = ValidarEsquema(Constructor("john doe", 20, "mail@mail.com", true), 'update');
+
+{
+  Result: 'Validate',
+  Response: {
+    nombre: 'john doe',
+    edad: 20,
+    email: 'mail@mail.com',
+    activo: true,
+    update_at: 2022-07-10T17:02:14.318Z
+  }
+}
+
+```
+
+### Campos obligatorios: Cada propiedad debe tener un "value" el cual el constructor le asignará un valor, y cada campo debe tener un "type" donde se le debe indicar el tipo de dato, los tipos de datos soportados son: 
+
+* "string" : Cadena de texto
+* "number" : Número
+* "email" : Formato valido de un correo electronico
+* "password": *El tipo "password" para que sea valido debe incluir al menos un caracter especial {@$!%*?&}, Una mayuscula, Un numero, entre 8-15 caracteres en total.*
+* "boolean" : true o false
+
 
 ***
 
-## Validaciones adicionales: 
+### Validaciones adicionales: 
 
 1. **empty**: true or false, para indicar si el campo puede aceptar o no string vacíos
 2. **min**: number, un número para indicar el valor minimo del nuemro o de los caracteres de una cadena de texto

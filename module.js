@@ -96,8 +96,11 @@ export function ValidarEsquema(Constructor) {
     console.log({ Result: "Errors", Response: msgFilter });
     return { Result: "Errors", Response: msgFilter };
   } else {
-    if (Constructor[1]?.timeStamp) {
+    if (mode === 'create') {
       Respuesta["create_at"] = new Date();
+      Respuesta["update_at"] = new Date();
+    }
+    if (mode === 'update') {
       Respuesta["update_at"] = new Date();
     }
     console.log({ Result: "Validate", Response: Respuesta });

@@ -16,11 +16,6 @@ let type = {
     let dato = typeof campo === "boolean" ? true : false;
     return dato;
   },
-  /**
-   *
-   * @param {*} password Un caracter especial {@$!%*?&}, Una mayuscula, Un numero, entre 8-15 caracteres en total
-   * @returns boolean
-   */
   password: function (password) {
     const ExpRegularPassword =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}$/;
@@ -53,7 +48,7 @@ let type = {
 };
 
 
-function ValidarEsquema(Constructor) {
+function ValidarEsquema(Constructor, mode = 'default') {
   let msg = [];
   let Respuesta = {};
   for (const [key, values] of Object.entries(Constructor[0])) {
@@ -96,8 +91,11 @@ function ValidarEsquema(Constructor) {
     console.log({ Result: "Errors", Response: msgFilter });
     return { Result: "Errors", Response: msgFilter };
   } else {
-    if (Constructor[1]?.timeStamp) {
+    if (mode === 'create') {
       Respuesta["create_at"] = new Date();
+      Respuesta["update_at"] = new Date();
+    }
+    if (mode === 'update') {
       Respuesta["update_at"] = new Date();
     }
     console.log({ Result: "Validate", Response: Respuesta });
@@ -106,4 +104,3 @@ function ValidarEsquema(Constructor) {
 }
 
 module.exports = { ValidarEsquema }
-
