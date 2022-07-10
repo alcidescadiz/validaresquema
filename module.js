@@ -96,11 +96,20 @@ export function ValidarEsquema(Constructor) {
     return { Result: "Errors", Response: msgFilter };
   } else {
     if (mode === 'create') {
-      Respuesta["create_at"] = new Date();
-      Respuesta["update_at"] = new Date();
+      Respuesta["create_at"] = new Intl.DateTimeFormat("es", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }).format(new Date());
+      Respuesta["update_at"] = new Intl.DateTimeFormat("es", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }).format(new Date());
     }
     if (mode === 'update') {
-      Respuesta["update_at"] = new Date();
+      Respuesta["update_at"] = new Intl.DateTimeFormat("es", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }).format(new Date());
     }
     return { Result: "Validate", Response: Respuesta };
   }
