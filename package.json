@@ -1,0 +1,17 @@
+{
+  "name": "validaresquema",
+  "version": "0.0.8",
+  "description": "Validación de campos para base de datos sin esquemas",
+  "main": "index.js",
+  "type": "commonjs",
+  "exports":{
+    "default": "./index.js",
+    "import": "./module.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["Validaciones", "Validate"],
+  "author": "Alcides J. Cádiz",
+  "license": "ISC"
+}
