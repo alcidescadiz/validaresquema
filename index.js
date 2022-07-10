@@ -88,17 +88,24 @@ function ValidarEsquema(Constructor, mode = 'default') {
     let msgFilter = msg.filter((item,index)=>{
       return msg.indexOf(item) === index;
     })
-    console.log({ Result: "Errors", Response: msgFilter });
     return { Result: "Errors", Response: msgFilter };
   } else {
     if (mode === 'create') {
-      Respuesta["create_at"] = new Date();
-      Respuesta["update_at"] = new Date();
+      Respuesta["create_at"] = new Intl.DateTimeFormat("es", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }).format(new Date());
+      Respuesta["update_at"] = new Intl.DateTimeFormat("es", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }).format(new Date())
     }
     if (mode === 'update') {
-      Respuesta["update_at"] = new Date();
+      Respuesta["update_at"] = new Intl.DateTimeFormat("es", {
+        dateStyle: "short",
+        timeStyle: "short",
+      }).format(new Date())
     }
-    console.log({ Result: "Validate", Response: Respuesta });
     return { Result: "Validate", Response: Respuesta };
   }
 }

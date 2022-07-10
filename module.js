@@ -93,7 +93,6 @@ export function ValidarEsquema(Constructor) {
     let msgFilter = msg.filter((item,index)=>{
       return msg.indexOf(item) === index;
     })
-    console.log({ Result: "Errors", Response: msgFilter });
     return { Result: "Errors", Response: msgFilter };
   } else {
     if (mode === 'create') {
@@ -103,7 +102,6 @@ export function ValidarEsquema(Constructor) {
     if (mode === 'update') {
       Respuesta["update_at"] = new Date();
     }
-    console.log({ Result: "Validate", Response: Respuesta });
     return { Result: "Validate", Response: Respuesta };
   }
 }
