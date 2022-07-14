@@ -110,4 +110,13 @@ function ValidarEsquema(Constructor, mode = 'default') {
   }
 }
 
-module.exports = { ValidarEsquema }
+function isImageValidate(originalname , size, max=800000){
+  let extFile = originalname.split('.')[1] 
+  if(extFile === 'jpg' || extFile === 'jpeg'|| extFile === 'png' && !(size >= max)){
+    return { validation: true, msg: 'Tipo de archivo valido' };
+  }else{
+    return { validation: false, msg: 'Tipo de archivo no valido o tamaño muy pesado' };
+  }
+}
+
+module.exports = { ValidarEsquema, isImageValidate }

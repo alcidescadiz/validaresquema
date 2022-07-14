@@ -149,3 +149,43 @@ let User = ValidarEsquema(Constructor("john doe", 20, "mail@mail.com", true), 'u
 2. **min**: number, un número para indicar el valor minimo del nuemro o de los caracteres de una cadena de texto
 3. **max**: number, un número para indicar el valor maximo del numero o de los caracteres de una cadena de texto
 4. **msg**: string, puede pasar su propio mensaje de error para la validación
+
+### Validación de formato y tamaño de imagenes:
+
+```javascript
+
+import { isImageValidate } from 'validaresquema'
+...
+const { originalname, size  } = req.file;
+let validarImagen = isImageValidate(originalname , size, 800000);
+
+```
+
+```javascript
+
+const { isImageValidate } = require('validaresquema')
+...
+const { originalname, size  } = req.file;
+let validarImagen = isImageValidate(originalname , size, 800000);
+
+```
+
+* La función **isImageValidate** necesita dos parametros obligatorios: originalname y  size, que se obtienen del request (req) en su objeto "file", este se activa cuando se envía un archivo, el tercer parámetro es el tamaño en bytes máximo que deseamos admitir para la imagen, por defecto es 800000 bytes equivalente a 800kb.
+* Por defecto esta función solo admite formato de imágenes con extenciones: jpg, jpeg y png, cualquier otra extención la rechazará.
+* De ser positiva la validación retornará la siguiente respuesta:
+
+```js
+{ 
+  validation: true, 
+  msg: 'Tipo de archivo valido' 
+}
+```
+
+* De ser negativa la validación la respuesta recibida será:
+
+```js
+{ 
+  validation: false, 
+  msg: 'Tipo de archivo no valido o tamaño muy pesado'
+}
+```
