@@ -1,6 +1,6 @@
 {
   "name": "validaresquema",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Validación de campos para base de datos sin esquemas",
   "main": "index.js",
   "type": "commonjs",
